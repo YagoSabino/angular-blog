@@ -33,7 +33,7 @@ export class ModalActionService {
   }
 
   // SEARCH ACTION
-
+  // THIS EVENT WAS DONE IN THIS SERVICE ONLY TO AVOID CREATE A NEW SERVICE ONLY TO HANDLE ONE EVENT
   searchPost: EventEmitter<string> = new EventEmitter<string>();
 
   searchPostEvent(searchString: string) {
