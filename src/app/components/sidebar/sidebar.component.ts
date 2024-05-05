@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ModalActionService } from '@service/modal-action.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  constructor (private modalActionService: ModalActionService) {}
+
+  clickAddPost(event: Event): void {
+    event.preventDefault();
+    this.modalActionService.showAddPostModalAction();
+  }
 }

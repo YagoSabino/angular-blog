@@ -1,0 +1,64 @@
+
+<div class="flex flex-col p-2 h-[800px] w-[300px] sm:w-[600px] gap-5">
+    <div class="flex flex-row justify-between items-center pb-3 border-b">
+        <span class="font-bold text-3xl pl-2">Comments</span>
+        <div class="flex flex-row justify-end items-center gap-3">
+            <!-- <button (click)="onCloseClick()" class="bg-lime-600 hover:bg-lime-700 text-[16px] duration-300 flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+                <fa-icon [icon]="faFloppyDisk" class="text-white font text-[16px]"></fa-icon>
+            </button> -->
+            <button (click)="onCloseClick()" class="bg-gray-500 hover:bg-gray-600 text-[16px] duration-300 flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+                <fa-icon [icon]="faXmark" class="text-white font text-[16px]"></fa-icon>
+            </button>
+        </div>
+    </div>
+    <div></div>
+    @for (comment of comments; track comment.id) {
+        @if (updatingComment.id !== comment.id) {
+            <div class="flex flex-col gap-2">
+                <div class="flex flex-row items-center gap-2">
+                    <img 
+                        src="../assets/user.png"
+                        alt="Postagem"
+                        class="rounded-full min-h-7 min-w-7 w-7 h-7 object-cover duration-300"
+                    />
+                    <span class="font-bold">{{comment.name}} &lt;{{comment.email}}&gt;</span>
+                </div>
+                <div class="flex flex-row justify-between w-full min-h-20 rounded-lg border-2 border-zinc-400 hover:bg-slate-100 hover:border-zinc-500 px-2 py-1 duration-100">
+                    <span class="first-letter:text-lg first-letter:uppercase first-letter:pl-3">{{comment.body}}</span>
+                    <div class="flex flex-col gap-3">
+                        <a (click)="startEditComment($event, comment)" class="flex" href="#">
+                            <fa-icon [icon]="faPen" class="font text-[14px]"></fa-icon>
+                        </a>
+                        <a (click)="deleteComment($event, comment)" class="flex" href="#">
+                            <fa-icon [icon]="faTrash" class="font text-[14px]"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (updatingComment.id === comment.id) {
+            <div class="flex flex-col gap-2">
+                <div class="flex flex-row items-center gap-2">
+                    <img 
+                        src="../assets/user.png"
+                        alt="Postagem"
+                        class="rounded-full min-h-7 min-w-7 w-7 h-7 object-cover duration-300"
+                    />
+                    <span class="font-bold">{{updatingComment.name}} &lt;{{updatingComment.email}}&gt;</span>
+                </div>
+                <div class="flex flex-row w-full h-auto rounded-lg px-2 bg-slate-200 py-1 duration-300">
+                    <textarea class="flex w-full h-20 outline-none bg-slate-200" [(ngModel)]="updatingComment.body">
+                    </textarea>
+                    <div class="flex flex-col gap-1 pl-2">
+                        <a (click)="confirmEditComment($event)" href="#">
+                            <fa-icon [icon]="faCheck" class="font text-[16px]"></fa-icon>
+                        </a>
+                        <a (click)="abortEditComment($event)" href="#">
+                            <fa-icon [icon]="faBan" class="font text-[16px]"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

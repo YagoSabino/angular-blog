@@ -1,0 +1,37 @@
+
+<div class="flex flex-col p-2 h-[500px] w-[300px] sm:w-[500px] gap-5">
+    <div class="flex flex-row justify-between items-center pb-3 border-b">
+        <span class="font-bold text-3xl pl-2">Post</span>
+        <button (click)="onCloseClick()" class="bg-gray-500 hover:bg-gray-600 text-[16px] duration-300 flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+            <fa-icon [icon]="faXmark" class="text-white font text-[16px]"></fa-icon>
+        </button>
+    </div>
+    <div class="flex flex-row items-center gap-2 px-2">
+        <label class="text-lg font-bold" for="post-tile">Title</label>
+        <input class="w-full h-10 bg-slate-100 px-2 outline-none rounded-lg" [(ngModel)]="post.title" type="text" name="post-title" id="post-title">
+    </div>
+    <div class="flex flex-col items-start gap-2 h-full px-2">
+        <label class="text-lg font-bold" for="post-tile">Body</label>
+        <textarea class="w-full h-full bg-slate-100 px-2 outline-none rounded-lg pt-2" [(ngModel)]="post.body"></textarea>
+    </div>
+    <div class="flex flex-row justify-end gap-2">
+        @if (isNewPost) {
+            <button (click)="addClick()" class="bg-lime-600 hover:bg-lime-700 text-[16px] duration-300 text-white flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+                <fa-icon [icon]="faFloppyDisk" class="text-white font text-[16px]"></fa-icon>
+            </button>
+        }
+        
+        @if (!isNewPost) {            
+            <button (click)="openCommentDialog($event)" class="bg-sky-600 hover:bg-sky-700 text-[16px] duration-300 text-white flex items-center justify-center gap-2 px-4 py-2 rounded font-medium mr-auto">
+                <span>Comments</span>
+                <fa-icon [icon]="faComment" class="text-white font text-[16px]"></fa-icon>
+            </button>
+            <button (click)="updateClick()" class="bg-amber-500 hover:bg-amber-600 text-[16px] duration-300 text-white flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+                <fa-icon [icon]="faPen" class="text-white font text-[16px]"></fa-icon>
+            </button>
+            <button (click)="deleteClick()" class="bg-rose-500 hover:bg-rose-600 text-[16px] duration-300 text-white flex items-center justify-center gap-2 px-4 py-2 rounded font-medium">
+                <fa-icon [icon]="faTrash" class="text-white font text-[16px]"></fa-icon>
+            </button>
+        }
+    </div>
+</div>

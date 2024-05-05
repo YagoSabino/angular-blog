@@ -5,10 +5,7 @@
             <fa-icon [icon]="faXmark" class="text-black"></fa-icon>
         </button>
         <nav class="flex flex-col mt-8 gap-3 w-full">
-            <a href="#" class="text-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300">Menu 1</a>
-            <a href="#" class="text-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300">Menu 2</a>
-            <a href="#" class="text-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300">Menu 3</a>
-            <a href="#" class="text-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300">Menu 4</a>
+            <a href="#" (click)="clickAddPost($event)" class="text-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300">New Post</a>
         </nav>
     </div>
 }
@@ -17,11 +14,14 @@
 <!-- HEADER -->
 <header class="bg-white w-full py-5 px-3 flex flex-row items-center justify-between">
     <div id="search-bar" class="flex items-center bg-slate-100 px-3 py-2 w-full max-w-xs lg:max-w-[50%] rounded-lg lg:mr-8">
-        <fa-icon [icon]="faSearch" class="text-gray-500 text-[16px]"></fa-icon>
+        <a (click)="triggerSearch($event)" href="#">
+            <fa-icon [icon]="faSearch" class="text-gray-500 text-[16px]"></fa-icon>
+        </a>
         <input 
             type="text" 
             class="w-full bg-slate-100 px-2 outline-none"
-            placeholder="Search something"
+            placeholder="Search something by title"
+            [(ngModel)]="searchString" (keyup.enter)="triggerSearch($event)"
         />
     </div>
 

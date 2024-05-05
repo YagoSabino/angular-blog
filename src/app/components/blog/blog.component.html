@@ -1,11 +1,11 @@
 <section class="w-full px-3 lg:px-6">
     <div class="flex flex-row w-full items-baseline justify-between">
-        <h1 class="font-bold text-3xl mt-4 mb-6">Section Title</h1>
-        <span class="hidden md:block text-gray-600">100 itens fatched</span>
+        <h1 class="font-bold text-3xl mt-4 mb-6">Desafio Blog</h1>
+        <span class="hidden md:block text-gray-600">{{filteredPostsCount}} itens fatched</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @for (post of posts; track post.id) {
-            <a href="#" class="bg-white p-3 rounded-lg lg:min-h-[400px] xl:min-h-[250px] min-h-[250px] relative flex flex-col hover:shadow-xl duration-300">
+        @for (post of filteredPosts; track post.id) {
+            <a href="#" (click)="openPostDialog($event,post)" class="bg-white p-3 rounded-lg lg:min-h-[400px] xl:min-h-[250px] min-h-[250px] relative flex flex-col hover:shadow-xl duration-300">
                 <div>
                     <div class="flex flex-row items-center gap-4">
                         <img 
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col h-full gap-1 my-2 text-sm bg-slate-50 rounded-lg px-5 py-2">
-                    <span class="first-letter:text-lg first-letter:pl-4">{{post.body}}</span>
+                    <span class="first-letter:text-lg first-letter:uppercase first-letter:pl-4">{{post.body}}</span>
                 </div>
             </a>
         }

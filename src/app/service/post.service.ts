@@ -15,4 +15,16 @@ export class PostService {
   getAll(): Observable<Post[]> {
     return this.http.get<Post[]>(this.url);
   }
+
+  newPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.url, post);
+  }
+
+  deletePost(id: number): Observable<Post> {
+    return this.http.delete<Post>(this.url+'/'+id.toString());
+  }
+
+  updatePost(post: Post): Observable<Post> {
+    return this.http.put<Post>(this.url+'/'+post.id.toString(), post);
+  }
 }
